@@ -5,11 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wireframe Layout</title>
     <link rel="stylesheet" href="GlorpSlurps.css">
+    <script src="index.js"></script>
+
 </head>
 <body>
 
     <header>
-        <img src="header.jpg" alt="Company Logo" class="logo">
+        <label for="logo-url">Change Logo URL:</label>
+        <input type="text" id="logo-url" placeholder="https://example.com/logo.jpg">
+        <button onclick="changeLogo()">Update Logo</button>
         <nav>
             <ul>
                 <li><a href="#">Home</a></li>
@@ -47,18 +51,22 @@
                 <h3>Your company's name</h3>
                 <p>© 2024, Company's name. All rights reserved.</p>
             </div>
-            <div class="footer-links">
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Blog</a></li>
-                </ul>
-                <ul>
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">LinkedIn</a></li>
-                    <li><a href="#">GitHub</a></li>
-                </ul>
-            </div>
+            <div>
+            <label for="link-text">Add Footer Link - Text:</label>
+            <input type="text" id="link-text" placeholder="Link Name">
+          
+            <label for="link-url">Add Footer Link - URL:</label>
+            <input type="text" id="link-url" placeholder="https://example.com">
+          
+            <label for="link-group">Add to Group:</label>
+            <select id="link-group">
+              <option value="footer-links-1">First Group</option>
+              <option value="footer-links-2">Second Group</option>
+            </select>
+          
+            <button onclick="addFooterLink()">Add Footer Link</button>
+            <button onclick="removeLastFooterLink()">Remove Last Link</button>
+        </div>
         </div>
     </footer>
 
