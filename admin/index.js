@@ -1,8 +1,13 @@
 function changeLogo() {
     const newUrl = document.getElementById("logo-url").value.trim();
+    console.log("Updating logo to:", newUrl);
     if (newUrl) {
       const logo = document.getElementById("logo");
-      logo.src = newUrl;
+      if (logo) {
+        logo.src = newUrl;
+      } else {
+        console.error("Logo element not found.");
+      }
     }
   }
   
@@ -11,24 +16,25 @@ function changeLogo() {
     const url = document.getElementById("link-url").value.trim();
     const group = document.getElementById("link-group").value;
   
+    console.log("Adding link:", text, url, "to", group);
+  
     if (text && url && group) {
       const newLink = document.createElement("li");
       const a = document.createElement("a");
       a.href = url;
       a.textContent = text;
       newLink.appendChild(a);
-      document.getElementById(group).appendChild(newLink);
+  
+      const list = document.getElementById(group);
+      if (list) {
+        list.appendChild(newLink);
+      } else {
+        console.error("Footer group not found:", group);
+      }
   
       document.getElementById("link-text").value = '';
       document.getElementById("link-url").value = '';
     }
   }
-  
-  function removeLastFooterLink() {
-    const group = document.getElementById("link-group").value;
-    const list = document.getElementById(group);
-    if (list.lastElementChild) {
-      list.removeChild(list.lastElementChild);
-    }
-  }
+  console.log("admin-controls.js loaded!");
   
