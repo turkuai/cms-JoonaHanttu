@@ -36,13 +36,22 @@ function addFooterLink() {
 }
 
 function removeLastFooterLink() {
-  const group = document.getElementById("link-group").value;
-  const list = document.getElementById(group);
-  if (list && list.lastElementChild) {
-    list.removeChild(list.lastElementChild);
-    removeLastLinkFromStorage(group);
+    const group = document.getElementById("link-group").value;
+    const list = document.getElementById(group);
+  
+    if (list && list.lastElementChild) {
+      const lastLinkText = list.lastElementChild.textContent || "this link";
+      const confirmed = confirm(`Are you sure you want to remove "${lastLinkText}"?`);
+  
+      if (confirmed) {
+        list.removeChild(list.lastElementChild);
+        removeLastLinkFromStorage(group);
+      }
+    } else {
+      alert("There are no links to remove in this group.");
+    }
   }
-}
+  
 
 function createLinkElement(linkData) {
   const li = document.createElement("li");
