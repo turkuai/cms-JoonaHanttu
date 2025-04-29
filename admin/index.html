@@ -25,25 +25,20 @@
     </header>
 
     <main>
-        <section class="article">
-            <div class="text-content">
-                <h2>Jeff the Landshark </h2>
-                <p>He is a humorous and quirky Marvel Comics character. He is a magical landshark who became a fan-favorite for his adorable yet chaotic nature. First appearing in The Unbeatable Squirrel Girl, Jeff is often seen as a sidekick and is known for his love of snacks and his ability to create mayhem. Despite his cute appearance, he has a ferocious side and is loyal to those he cares about.</p>
-            </div>
-            <div class="image-placeholder">
-                <img src="jeff.jpg" alt="">
-            </div>
-        </section>
-    
-        <section class="article">
-            <div class="text-content">
-                <h2>Magik (Illyana Rasputin) </h2>
-                <p>She is a fictional superhero in Marvel Comics, and the younger sister of Colossus. She is a mutant with the ability to teleport and wield the Soulsword, a powerful weapon. Magik has often been a member of the X-Men and New Mutants, and her powers are linked to the mystical dimension known as Limbo. Her backstory includes being kidnapped to Limbo at a young age, where she trained to become a sorceress.</p>
-            </div>
-            <div class="image-placeholder">
-                <img src="magik.jpg" alt="">
-            </div>
-        </section>
+        <section id="article-controls">
+            <h3>Manage Articles</h3>
+            <label for="new-article-title">Title:</label>
+            <input type="text" id="new-article-title" placeholder="Article Title">
+        
+            <label for="new-article-content">Content:</label>
+            <textarea id="new-article-content" placeholder="Article content"></textarea>
+        
+            <label for="new-article-image">Image URL:</label>
+            <input type="text" id="new-article-image" placeholder="https://example.com/image.jpg">
+        
+            <button onclick="createArticle()">Add Article</button>
+            <button onclick="deleteLastArticle()">Delete Last Article</button>
+        </section>        
     </main>
     
     <footer>

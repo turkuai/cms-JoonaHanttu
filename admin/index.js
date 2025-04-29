@@ -4,7 +4,9 @@ console.log("Admin JS loaded");
 window.addEventListener("DOMContentLoaded", () => {
   loadLogo();
   loadFooterLinks();
+  loadCustomArticles(); // <-- Add this line
 });
+
 
 function changeLogo() {
   const newUrl = document.getElementById("logo-url").value.trim();
@@ -96,3 +98,93 @@ function loadFooterLinks() {
     });
   });
 }
+
+function createArticle() {
+  const title = document.getElementById("new-article-title").value.trim();
+  const content = document.getElementById("new-article-content").value.trim();
+  const imageUrl = document.getElementById("new-article-image").value.trim() || 'placeholder.jpg';
+
+  if (!title || !content) {
+      alert("Title and content are required.");
+      return;
+  }
+
+  const articleData = { title, content, imageUrl };
+
+  const articles = JSON.parse(localStorage.getItem("customArticles")) || [];
+  articles.push(articleData);
+  localStorage.setItem("customArticles", JSON.stringify(articles));
+
+  appendArticleToDOM(articleData);
+
+  // Clear input fields
+  document.getElementById("new-article-title").value = '';
+  document.getElementById("new-article-content").value = '';
+  document.getElementById("new-article-image").value = '';
+}
+
+function deleteLastArticle() {
+  const articles = document.querySelectorAll("main .article");
+  const defaultCount = 2; // number of initial hardcoded articles
+  if (articles.length > defaultCount) {
+      articles[articles.length - 1].remove();
+
+      const savedArticles = JSON.parse(localStorage.getItem("customArticles")) || [];
+      savedArticles.pop();
+      localStorage.setItem("customArticles", JSON.stringify(savedArticles));
+  } else {
+      alert("You can only delete custom-added articles.");
+  }
+}
+
+function appendArticleToDOM(article, index = null) {
+  const section = document.createElement("section");
+  section.className = "article";
+
+  section.innerHTML = `
+      <div class="text-content">
+          <h2>${article.title}</h2>
+          <p>${article.content}</p>
+      </div>
+      <div class="image-placeholder">
+          <img src="${article.imageUrl}" alt="">
+      </div>
+      <button class="edit-button">Edit</button>
+  `;
+
+  // Add edit functionality
+  section.querySelector(".edit-button").addEventListener("click", () => {
+      const newTitle = prompt("New title:", article.title);
+      const newContent = prompt("New content:", article.content);
+      const newImageUrl = prompt("New image URL:", article.imageUrl);
+
+      if (newTitle && newContent) {
+          article.title = newTitle.trim();
+          article.content = newContent.trim();
+          article.imageUrl = newImageUrl.trim() || article.imageUrl;
+
+          // Update in localStorage
+          const saved = JSON.parse(localStorage.getItem("customArticles")) || [];
+          const articleIndex = index ?? Array.from(document.querySelectorAll("main .article")).indexOf(section) - 2; // skip hardcoded articles
+          if (saved[articleIndex]) {
+              saved[articleIndex] = article;
+              localStorage.setItem("customArticles", JSON.stringify(saved));
+          }
+
+          // Update DOM
+          section.querySelector("h2").textContent = article.title;
+          section.querySelector("p").textContent = article.content;
+          section.querySelector("img").src = article.imageUrl;
+      }
+  });
+
+  document.querySelector("main").appendChild(section);
+}
+
+
+function loadCustomArticles() {
+  const savedArticles = JSON.parse(localStorage.getItem("customArticles")) || [];
+  savedArticles.forEach((article, index) => appendArticleToDOM(article, index));
+}
+
+
