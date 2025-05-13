@@ -1,0 +1,15 @@
+body {
+    margin: 0;
+}
+.grid {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    background-color: rgb(160, 182, 204);
+    padding: 1rem;
+  }
+  .grid > div {
+    padding: 3rem;
+    font-size: 3rem;
+    text-align: center;
+    border: 1rem, solid Black;
+  }
