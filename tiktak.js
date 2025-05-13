@@ -1,13 +1,18 @@
-function playerplace(id) {
-    const boxid = id;
-    if (currentValue != "X"){
-        currentValue = "X"
-        document.getElementById(boxid).innerHTML = currentValue;
+var currentValue = "O";
+
+function playerplace(e) {
+    if(e.target.className == "grid"){
+        return
     }
-    
-    else{
-        currentValue = "O"
-        document.getElementById(boxid).innerHTML = currentValue;
+    if ( e.target.innerHTML == ""){
+        if (currentValue == "O"){
+            currentValue = "X"
+            e.target.innerHTML = currentValue;
+        }
+        
+        else
+            currentValue = "O"
+            e.target.innerHTML = currentValue;
+        
     }
-  }
-var currentValue = "O"
+}
