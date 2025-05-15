@@ -1,104 +1,135 @@
-var currentValue = "O";
-var currentValue = "O";
-function playerplace(e){
+var tilanne = false;
+function start() {
+    const pelaaja1 = document.getElementById("p1").value.trim();
+    const pelaaja2 = document.getElementById("p2").value.trim();
+
+    if (pelaaja1 != "" || pelaaja2 != ""){
+        for (let a = 1; a <= 9; a++) {
+        const cell = document.getElementById(a);
+        cell.innerHTML = "";
+        cell.setAttribute("class", "restart");
+        }
+        currentValue = "O";
+        tilanne = true;
+        console.log("toimii");
+    }
+}
+
+function lopeta() {
+    tilanne = false;
+    console.log("toimii");
+}
+function playerplace(e)
+{
+
+    if (!tilanne ) return;
+    const cellDiv = e.target;
+
     if (e.target.innerHTML == ""){
         if (currentValue != "X"){
-            currentValue= "X";
-            checkwin()
+            currentValue = "X";
             e.target.innerHTML = currentValue;
-        }
+            checkwin()
+        } 
         else{
-            currentValue= "O";
-            checkwin()
+            currentValue = "O";
             e.target.innerHTML = currentValue;
+            checkwin()
         }
     }
-
 function checkwin(){
-        const s11 = document.getElementById("1-1")
-        const s12 = document.getElementById("1-2")
-        const s13 = document.getElementById("1-3")
-        const s21 = document.getElementById("2-1")
-        const s22 = document.getElementById("2-2")
-        const s23 = document.getElementById("2-3")
-        const s31 = document.getElementById("3-1")
-        const s32 = document.getElementById("3-2")
-        const s33 = document.getElementById("3-3")
-        const cellDiv = e.target;
-        let row = cellDiv.getAttribute("row");
-        let col = cellDiv.getAttribute("col");
-    if (row == "1" && col == "1")
-        {
-            if ((s12.innerHTML == currentValue && s13.innerHTML == currentValue)||
-                (s21.innerHTML == currentValue && s31.innerHTML == currentValue)||
-                (s22.innerHTML == currentValue && s33.innerHTML == currentValue))
-                {
-                    console.log("! ! Big WIN ! !")
-                }
-        } else if (row == "1" && col == "2")
-        {
-            if ((s11.innerHTML == currentValue && s13.innerHTML == currentValue)||
-                (s22.innerHTML == currentValue && s32.innerHTML == currentValue))
-                {
-                    console.log("! ! Big WIN ! !")
-                }
-        } else if (row == "1" && col == "3")
-        {
-            if ((s11.innerHTML == currentValue && s12.innerHTML == currentValue)||
-                (s22.innerHTML == currentValue && s31.innerHTML == currentValue)||
-                (s23.innerHTML == currentValue && s33.innerHTML == currentValue))
-                {
-                    console.log("! ! Big WIN ! !")
-                }
-        }    
-    if (row == "2" && col == "1")
-        {
-            if ((s11.innerHTML == currentValue && s31.innerHTML == currentValue)||
-                (s22.innerHTML == currentValue && s23.innerHTML == currentValue))
-                
-                {
-                    console.log("! ! Big WIN ! !")
-                }
-        } else if (row == "2" && col == "2")
-        {
-            if ((s12.innerHTML == currentValue && s32.innerHTML == currentValue)||
-                (s21.innerHTML == currentValue && s23.innerHTML == currentValue)||
-                (s11.innerHTML == currentValue && s33.innerHTML == currentValue)||
-                (s13.innerHTML == currentValue && s31.innerHTML == currentValue))
-                {
-                    console.log("! ! Big WIN ! !")
-                }
-        } else if (row == "2" && col == "3")
-        {
-            if ((s21.innerHTML == currentValue && s22.innerHTML == currentValue)||
-                (s13.innerHTML == currentValue && s33.innerHTML == currentValue))
-                {
-                    console.log("! ! Big WIN ! !")
-                }
-        }    
-    if (row == "3" && col == "1")
-        {
-            if ((s12.innerHTML == currentValue && s13.innerHTML == currentValue)||
-                (s21.innerHTML == currentValue && s31.innerHTML == currentValue)||
-                (s22.innerHTML == currentValue && s33.innerHTML == currentValue))
-                {
-                    console.log("! ! Big WIN ! !")
-                }
-        } else if (row == "3" && col == "2")
-        {
-            if ((s11.innerHTML == currentValue && s13.innerHTML == currentValue)||
-                (s22.innerHTML == currentValue && s32.innerHTML == currentValue))
-                {
-                    console.log("! ! Big WIN ! !")
-                }
-        } else if (row == "3" && col == "3")
-        {
-            if ((s11.innerHTML == currentValue && s12.innerHTML == currentValue)||
-                (s22.innerHTML == currentValue && s31.innerHTML == currentValue)||
-                (s23.innerHTML == currentValue && s33.innerHTML == currentValue))
-                {
-                    console.log("! ! Big WIN ! !")
-                }
-        }    
+        const row = cellDiv.getAttribute("row");
+        const col = cellDiv.getAttribute("col");
+        const s1 = document.getElementById("1")
+        const s2 = document.getElementById("2")
+        const s3 = document.getElementById("3")
+        const s4 = document.getElementById("4")
+        const s5 = document.getElementById("5")
+        const s6 = document.getElementById("6")
+        const s7 = document.getElementById("7")
+        const s8 = document.getElementById("8")
+        const s9 = document.getElementById("9")
+
+            if (s1.innerHTML === currentValue && s2.innerHTML === currentValue && s3.innerHTML === currentValue)
+            {
+                    s1.removeAttribute("class");
+                    s2.removeAttribute("class");
+                    s3.removeAttribute("class");
+                    s1.setAttribute("class", "winning-cell");
+                    s2.setAttribute("class", "winning-cell");
+                    s3.setAttribute("class", "winning-cell");
+                    tilanne = false;
+            }
+            else if (s4.innerHTML === currentValue && s5.innerHTML === currentValue && s6.innerHTML === currentValue)
+            {
+                    s4.removeAttribute("class");
+                    s5.removeAttribute("class");
+                    s6.removeAttribute("class");
+                    s4.setAttribute("class", "winning-cell");
+                    s5.setAttribute("class", "winning-cell");
+                    s6.setAttribute("class", "winning-cell");
+                    tilanne = false;
+            }
+            else if (s7.innerHTML === currentValue && s8.innerHTML === currentValue && s9.innerHTML === currentValue)
+            {
+                    s7.removeAttribute("class");
+                    s8.removeAttribute("class");
+                    s9.removeAttribute("class");
+                    s7.setAttribute("class", "winning-cell");
+                    s8.setAttribute("class", "winning-cell");
+                    s9.setAttribute("class", "winning-cell");
+                    tilanne = false;
+            }
+            else if (s1.innerHTML === currentValue && s4.innerHTML === currentValue && s7.innerHTML === currentValue)
+            {
+                    s1.removeAttribute("class");
+                    s4.removeAttribute("class");
+                    s7.removeAttribute("class");
+                    s.setAttribute("class", "winning-cell");
+                    s4.setAttribute("class", "winning-cell");
+                    s7.setAttribute("class", "winning-cell");
+                    tilanne = false;
+            }
+            else if (s2.innerHTML === currentValue && s5.innerHTML === currentValue && s8.innerHTML === currentValue)
+            {
+                    s2.removeAttribute("class");
+                    s5.removeAttribute("class");
+                    s8.removeAttribute("class");
+                    s2.setAttribute("class", "winning-cell");
+                    s5.setAttribute("class", "winning-cell");
+                    s8.setAttribute("class", "winning-cell");
+                    tilanne = false;
+            }
+            else if (s3.innerHTML === currentValue && s6.innerHTML === currentValue && s9.innerHTML === currentValue)
+            {
+                    s3.removeAttribute("class");
+                    s6.removeAttribute("class");
+                    s9.removeAttribute("class");
+                    s3.setAttribute("class", "winning-cell");
+                    s6.setAttribute("class", "winning-cell");
+                    s9.setAttribute("class", "winning-cell");
+                    tilanne = false;
+            }
+            else if (s1.innerHTML === currentValue && s5.innerHTML === currentValue && s9.innerHTML === currentValue)
+            {
+                    s1.removeAttribute("class");
+                    s5.removeAttribute("class");
+                    s9.removeAttribute("class");
+                    s1.setAttribute("class", "winning-cell");
+                    s5.setAttribute("class", "winning-cell");
+                    s9.setAttribute("class", "winning-cell");
+                    tilanne = false;
+            }
+            else if (s3.innerHTML === currentValue && s5.innerHTML === currentValue && s7.innerHTML === currentValue)
+            {
+                    s3.removeAttribute("class");
+                    s5.removeAttribute("class");
+                    s7.removeAttribute("class");
+                    s3.setAttribute("class", "winning-cell");
+                    s5.setAttribute("class", "winning-cell");
+                    s7.setAttribute("class", "winning-cell");
+                    tilanne = false;
+            }
+    }
 }
-}
+
