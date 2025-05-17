@@ -3,6 +3,17 @@ function start() {
     const pelaaja1 = document.getElementById("p1").value.trim();
     const pelaaja2 = document.getElementById("p2").value.trim();
 
+    fetch("replay_save.php",{
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    method: "POST",
+    body: JSON.stringify({pelaaja1, pelaaja2})
+})
+.then(function(res){ console.log(res) })
+.catch(function(res){ console.log(res) })
+
     if (pelaaja1 != "" || pelaaja2 != ""){
         for (let a = 1; a <= 9; a++) {
         const cell = document.getElementById(a);
