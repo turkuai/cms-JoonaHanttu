@@ -1,5 +1,6 @@
 var tilanne = false;
 let pelitid = null;
+let moveindex = 0;
 function start() {
     const pelaaja1 = document.getElementById("p1").value.trim();
     const pelaaja2 = document.getElementById("p2").value.trim();
@@ -12,7 +13,7 @@ function start() {
     method: "POST",
     body: JSON.stringify({pelaaja1, pelaaja2})
 })
-.then( (res) => res.json()).then (json => {pelitid = json.pelitid; console.log(pelitid);})
+.then( (res) => res.json()).then (json => {pelitid = json.pelitid; moveindex = 0; console.log(pelitid);})
 .catch(function(res){ console.log(res) })
 
 
@@ -29,7 +30,7 @@ function start() {
     }
 }
 
-function lopeta() {
+function end() {
     tilanne = false;
     console.log("toimii");
 }
@@ -51,9 +52,34 @@ function playerplace(e)
             checkwin()
         }
     }
+
+moveindex ++
+    // Get row and col from the clicked cell
+        const row = parseInt(cellDiv.getAttribute("row"));
+        const col = parseInt(cellDiv.getAttribute("col"));
+
+        // Send move to the server
+        fetch("replay_move_save.php", {
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  },
+  method: "POST",
+  body: JSON.stringify({
+    game_id: pelitid,
+    move_index: moveindex,
+    row: row,
+    col: col
+  })
+})
+.then(res => res.json()).then(json => {console.log("saved:", json);})
+.catch(function(res){ console.log(res) })
+checkwin();
+}
+
+    
 function checkwin(){
-        const row = cellDiv.getAttribute("row");
-        const col = cellDiv.getAttribute("col");
+       
         const s1 = document.getElementById("1")
         const s2 = document.getElementById("2")
         const s3 = document.getElementById("3")
@@ -99,7 +125,7 @@ function checkwin(){
                     s1.removeAttribute("class");
                     s4.removeAttribute("class");
                     s7.removeAttribute("class");
-                    s.setAttribute("class", "winning-cell");
+                    s1.setAttribute("class", "winning-cell");
                     s4.setAttribute("class", "winning-cell");
                     s7.setAttribute("class", "winning-cell");
                     tilanne = false;
@@ -145,5 +171,5 @@ function checkwin(){
                     tilanne = false;
             }
     }
-}
+
 
