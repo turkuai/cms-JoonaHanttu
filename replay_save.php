@@ -7,7 +7,16 @@ $json = file_get_contents('php://input');
 
 // Converts it into a PHP object
 $data = json_decode($json);
-echo $data -> pelaaja1;
-echo $data -> pelaaja2;
 
+
+$stmt = $conn->prepare("INSERT INTO pelit (pelaaja_x, pelaaja_o) VALUES (?, ?)");
+$stmt->bind_param("ss", $data -> pelaaja1, $data -> pelaaja2);
+$stmt->execute();
+
+
+$pelitid = $stmt->insert_id;
+
+$stmt->close();
+$conn->close();
 ?>
+{ "pelitid": <?php echo $pelitid; ?> }

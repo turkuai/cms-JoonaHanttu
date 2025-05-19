@@ -1,4 +1,5 @@
 var tilanne = false;
+let pelitid = null;
 function start() {
     const pelaaja1 = document.getElementById("p1").value.trim();
     const pelaaja2 = document.getElementById("p2").value.trim();
@@ -11,8 +12,10 @@ function start() {
     method: "POST",
     body: JSON.stringify({pelaaja1, pelaaja2})
 })
-.then(function(res){ console.log(res) })
+.then( (res) => res.json()).then (json => {pelitid = json.pelitid; console.log(pelitid);})
 .catch(function(res){ console.log(res) })
+
+
 
     if (pelaaja1 != "" || pelaaja2 != ""){
         for (let a = 1; a <= 9; a++) {
