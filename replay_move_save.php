@@ -17,7 +17,7 @@ $moveid = $stmt->insert_id;
 
 $stmt->close();
 $conn->close();
-
+//valmis//
 ?>
 { "moveid": <?php echo $moveid; ?> }
 

@@ -18,5 +18,6 @@ $pelitid = $stmt->insert_id;
 
 $stmt->close();
 $conn->close();
+//valmis//
 ?>
 { "pelitid": <?php echo $pelitid; ?> }

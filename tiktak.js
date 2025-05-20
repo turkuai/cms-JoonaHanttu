@@ -172,4 +172,6 @@ function checkwin(){
             }
     }
 
+//valmis//
+
 
