@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wireframe Layout</title>
+    <link rel="stylesheet" href="GlorpSlurps.css">
+    <script src="index.js"></script>
+
+</head>
+<body>
+
+    <header>
+        <img src="header.jpg" class="logo" id="logo">
+        <label for="logo-url">Change Logo URL:</label>
+        <input type="text" id="logo-url" placeholder="https://example.com/logo.jpg">
+        <button onclick="changeLogo()">Update Logo</button>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Blog</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="article-controls">
+            <h3>Manage Articles</h3>
+            <label for="new-article-title">Title:</label>
+            <input type="text" id="new-article-title" placeholder="Article Title">
+        
+            <label for="new-article-content">Content:</label>
+            <textarea id="new-article-content" placeholder="Article content"></textarea>
+        
+            <label for="new-article-image">Image URL:</label>
+            <input type="text" id="new-article-image" placeholder="https://example.com/image.jpg">
+        
+            <button onclick="createArticle()">Add Article</button>
+            <button onclick="deleteLastArticle()">Delete Last Article</button>
+        </section>        
+    </main>
+    
+    <footer>
+        <div class="footer-content">
+            <div>
+                <h3>Your company's name</h3>
+                <p>© 2024, Company's name. All rights reserved.</p>
+            </div>
+            <div>
+                <ul id="footer-links-1">...</ul>
+                <ul id="footer-links-2">...</ul>
+            <label for="link-text">Add Footer Link - Text:</label>
+            <input type="text" id="link-text" placeholder="Link Name">
+          
+            <label for="link-url">Add Footer Link - URL:</label>
+            <input type="text" id="link-url" placeholder="https://example.com">
+          
+            <label for="link-group">Add to Group:</label>
+            <select id="link-group">
+              <option value="footer-links-1">First Group</option>
+              <option value="footer-links-2">Second Group</option>
+            </select>
+          
+            <button onclick="addFooterLink()">Add Footer Link</button>
+            <button onclick="removeLastFooterLink()">Remove Last Link</button>
+        </div>
+        </div>
+    </footer>
+
+</body>
+</html>
