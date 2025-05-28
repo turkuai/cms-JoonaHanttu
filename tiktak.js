@@ -30,10 +30,7 @@ function start() {
     }
 }
 
-function end() {
-    tilanne = false;
-    console.log("toimii");
-}
+
 function playerplace(e)
 {
 
@@ -173,5 +170,3 @@ function checkwin(){
     }
 
 //valmis//
-
-
